@@ -1,0 +1,82 @@
+.settings-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.settings-page h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.settings-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.settings-tabs button {
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 5px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.settings-tabs button.active {
+  border-bottom-color: #007bff; /* Or your primary color */
+  font-weight: bold;
+}
+
+.settings-content {
+  margin-top: 20px;
+}
+
+.settings-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.settings-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.setting-item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting-item label {
+  margin-right: 10px;
+  flex-basis: 40%; /* Adjust as needed */
+}
+
+.setting-item select,
+.setting-item input[type="number"],
+.setting-item input[type="range"],
+.setting-item input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
+.setting-item input[type="checkbox"] {
+  margin-left: 10px;
+  transform: scale(1.2);
+}
+
+/* Add more specific styles as needed */

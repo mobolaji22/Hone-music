@@ -2,6 +2,7 @@
 import "../App.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import HomeScreen from "./HomeScreen"; // Import the HomeScreen component
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
-          <p>i am home - Main Content Area</p>
+          {/* Render HomeScreen instead of placeholder */}
+          <HomeScreen />
         </main>
         <Footer />
       </div>

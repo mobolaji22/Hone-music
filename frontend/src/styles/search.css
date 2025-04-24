@@ -1,0 +1,134 @@
+/* Placeholder styles for SearchPage */
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Or adjust as needed */
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.search-header {
+  margin-bottom: 16px;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px 40px 10px 15px; /* Space for buttons */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+
+.clear-button,
+.voice-search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+}
+
+.clear-button {
+  right: 45px; /* Position next to voice button */
+}
+
+.voice-search-button.listening {
+  color: blue; /* Indicate listening state */
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  overflow-x: auto; /* For smaller screens */
+}
+
+.filter-tab {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-tab.active {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.search-content {
+  flex-grow: 1;
+  overflow-y: auto; /* Allow content scrolling */
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.recent-searches h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.recent-search-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-search-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-search-item:hover {
+  background-color: #f9f9f9;
+}
+
+.recent-search-item .icon {
+  margin-right: 10px;
+  color: #777;
+}
+
+.recent-search-item span {
+  flex-grow: 1;
+}
+
+.recent-time {
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.no-recent {
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Placeholder for spinner styles if not globally defined */
+/* Ensure spinner.css is created or styles are included here */
