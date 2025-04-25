@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { usePlayerContext } from "../../contexts/PlayerContext"; // Adjust path as needed
 import { fetchLyrics } from "../../api/contentService"; // Adjust path as needed
 import { formatTime } from "../../utils/formatters"; // Adjust path as needed
-import { Icon } from "../Icon"; // Adjust path as needed
+import Icon from "../Icon"; // Adjust path as needed
 
 // Placeholder for navigation hook if not using react-router-dom
 const useNavigate = () => ({

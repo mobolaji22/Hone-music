@@ -6,7 +6,7 @@ import { ArtistGrid } from "../components/ArtistGrid";
 import { PlaylistGrid } from "../components/PlaylistGrid";
 import { PodcastGrid } from "../components/PodcastGrid";
 import { TrackList } from "../components/TrackList";
-import { Icon } from "../components/Icon";
+import Icon from "../components/Icon";
 import { Spinner } from "../components/Spinner";
 import "../styles/library.css";
 

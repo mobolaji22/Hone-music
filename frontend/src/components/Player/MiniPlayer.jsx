@@ -1,6 +1,6 @@
 import React from "react";
 import { usePlayerContext } from "../../contexts/PlayerContext"; // Adjust path as needed
-import { Icon } from "../Icon"; // Adjust path as needed
+import Icon from "../Icon"; // Adjust path as needed
 
 export const MiniPlayer = ({ onPress }) => {
   const { currentTrack, isPlaying, play, pause } = usePlayerContext();

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Icon from "./Icon"; // Assuming an Icon component exists
+import Icon from "./Icon";
 
 export const PlaylistHeader = ({
   playlist,

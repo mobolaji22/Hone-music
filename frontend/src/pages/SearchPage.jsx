@@ -3,7 +3,7 @@ import { SpeechRecognition } from "../utils/speechRecognition";
 import { searchContent } from "../api/searchService";
 import { SearchResults } from "../components/SearchResults";
 import { FilterTabs } from "../components/FilterTabs";
-import { Icon } from "../components/Icon";
+import Icon from "../components/Icon";
 import { Spinner } from "../components/Spinner";
 import { formatRelativeTime } from "../utils/formatters";
 import "../styles/search.css";

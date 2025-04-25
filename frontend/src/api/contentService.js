@@ -1,97 +1,112 @@
-// Simulate fetching personalized content
+import { SpotifyService } from "../services/spotifyApi";
+
+// Fetch personalized content using Spotify API
 export const fetchPersonalizedContent = async () => {
-  console.log("API: Fetching personalized content...");
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return {
-    dailyMixes: [
-      {
-        id: "dm1",
-        title: "Daily Mix 1",
-        imageUrl: "https://via.placeholder.com/150/FF0000/FFFFFF?text=Mix1",
-      },
-      {
-        id: "dm2",
-        title: "Daily Mix 2",
-        imageUrl: "https://via.placeholder.com/150/00FF00/FFFFFF?text=Mix2",
-      },
-    ],
-    recentlyPlayed: [
-      {
-        id: "rp1",
-        title: "Liked Songs",
-        artist: "Various Artists",
-        imageUrl: "https://via.placeholder.com/150/0000FF/FFFFFF?text=Liked",
-      },
-      {
-        id: "rp2",
-        title: "Chill Vibes",
-        artist: "Playlist",
-        imageUrl: "https://via.placeholder.com/150/FFFF00/000000?text=Chill",
-      },
-    ],
-    recommendedPlaylists: [
-      {
-        id: "pl1",
-        title: "Focus Flow",
-        imageUrl: "https://via.placeholder.com/150/FF00FF/FFFFFF?text=Focus",
-      },
-      {
-        id: "pl2",
-        title: "Workout Beats",
-        imageUrl: "https://via.placeholder.com/150/00FFFF/000000?text=Workout",
-      },
-    ],
-  };
+  try {
+    console.log("API: Fetching personalized content...");
+
+    // Get user's playlists for daily mixes
+    const userPlaylists = await SpotifyService.getUserPlaylists("me");
+    const dailyMixes = userPlaylists.items.slice(0, 2).map((playlist) => ({
+      id: playlist.id,
+      title: playlist.name,
+      description: playlist.description || "",
+      imageUrl: playlist.images?.[0]?.url || "https://via.placeholder.com/150",
+      source: userPlaylists.source,
+    }));
+
+    // Get recently played tracks
+    const recentTracks = await SpotifyService.getPlaylistTracks("me", {
+      limit: 2,
+    });
+    const recentlyPlayed =
+      recentTracks.items?.map((item) => ({
+        id: item.track.id,
+        title: item.track.name,
+        artist: item.track.artists?.[0]?.name,
+        imageUrl:
+          item.track.album?.images?.[0]?.url ||
+          "https://via.placeholder.com/150",
+      })) || [];
+
+    // Get recommended playlists
+    const recommendedPlaylists = await SpotifyService.search("playlist", {
+      type: "playlist",
+      limit: 2,
+    });
+    const playlists =
+      recommendedPlaylists.playlists?.items?.map((playlist) => ({
+        id: playlist.id,
+        title: playlist.name,
+        imageUrl:
+          playlist.images?.[0]?.url || "https://via.placeholder.com/150",
+      })) || [];
+
+    return {
+      dailyMixes,
+      recentlyPlayed,
+      recommendedPlaylists: playlists,
+    };
+  } catch (error) {
+    console.error("Error fetching personalized content:", error);
+    throw error;
+  }
 };
 
-// Simulate fetching trending content
+// Fetch trending content using Spotify API
 export const fetchTrendingContent = async () => {
-  console.log("API: Fetching trending content...");
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 700));
-  return {
-    newReleases: [
-      {
-        id: "nr1",
-        title: "New Album A",
-        artist: "Artist X",
-        imageUrl: "https://via.placeholder.com/150/FFA500/FFFFFF?text=NewA",
-      },
-      {
-        id: "nr2",
-        title: "Single B",
-        artist: "Artist Y",
-        imageUrl: "https://via.placeholder.com/150/800080/FFFFFF?text=NewB",
-      },
-    ],
-    trendingTracks: [
-      {
-        id: "tt1",
-        title: "Viral Hit 1",
-        artist: "Singer Z",
-        imageUrl: "https://via.placeholder.com/150/A52A2A/FFFFFF?text=Trend1",
-      },
-      {
-        id: "tt2",
-        title: "Trending Sound",
-        artist: "Producer W",
-        imageUrl: "https://via.placeholder.com/150/D2691E/FFFFFF?text=Trend2",
-      },
-    ],
-    popularPlaylists: [
-      {
-        id: "pp1",
-        title: "Top Hits Today",
-        imageUrl: "https://via.placeholder.com/150/6495ED/FFFFFF?text=TopHits",
-      },
-      {
-        id: "pp2",
-        title: "Global Chart",
-        imageUrl: "https://via.placeholder.com/150/DC143C/FFFFFF?text=Global",
-      },
-    ],
-  };
+  try {
+    console.log("API: Fetching trending content...");
+
+    // Get new releases
+    const albumsResponse = await SpotifyService.search("", {
+      type: "album",
+      limit: 2,
+    });
+    const newReleases =
+      albumsResponse.albums?.items?.map((album) => ({
+        id: album.id,
+        title: album.name,
+        artist: album.artists?.[0]?.name,
+        imageUrl: album.images?.[0]?.url || "https://via.placeholder.com/150",
+      })) || [];
+
+    // Get trending tracks
+    const tracksResponse = await SpotifyService.search("", {
+      type: "track",
+      limit: 2,
+    });
+    const trendingTracks =
+      tracksResponse.tracks?.items?.map((track) => ({
+        id: track.id,
+        title: track.name,
+        artist: track.artists?.[0]?.name,
+        imageUrl:
+          track.album?.images?.[0]?.url || "https://via.placeholder.com/150",
+      })) || [];
+
+    // Get popular playlists
+    const playlistResponse = await SpotifyService.search("top", {
+      type: "playlist",
+      limit: 2,
+    });
+    const popularPlaylists =
+      playlistResponse.playlists?.items?.map((playlist) => ({
+        id: playlist.id,
+        title: playlist.name,
+        imageUrl:
+          playlist.images?.[0]?.url || "https://via.placeholder.com/150",
+      })) || [];
+
+    return {
+      newReleases,
+      trendingTracks,
+      popularPlaylists,
+    };
+  } catch (error) {
+    console.error("Error fetching trending content:", error);
+    throw error;
+  }
 };
 
 // Placeholder for fetching lyrics

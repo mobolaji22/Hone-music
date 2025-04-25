@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/spinner.css"; // Assuming spinner styles are in spinner.css
+import "../styles/spinner.css";
 
 // Placeholder Spinner component
 export const Spinner = () => {

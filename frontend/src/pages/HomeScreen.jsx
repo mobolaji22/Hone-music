@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom is used for navigation
-import { Icon } from "../components/Icon"; // Placeholder
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import Icon from "../components/Icon"; // Placeholder
 import { BottomTabBar } from "../components/Navigation/BottomTabBar"; // Placeholder
 import { MiniPlayer } from "../components/Player/MiniPlayer"; // Placeholder
 import {
@@ -8,8 +8,7 @@ import {
   fetchTrendingContent,
 } from "../api/contentService"; // Placeholder
 import { usePlayerContext } from "../contexts/PlayerContext"; // Placeholder
-import { SearchBar } from "../components/Search/SearchBar"; // Placeholder
-// import styles from '../styles/homeStyles.module.css'; // Assuming CSS Modules for styling
+import { SearchBar } from "../components/Search/SearchBar";
 import {
   PersonalizedSection,
   TrendingSection,
@@ -17,7 +16,7 @@ import {
 } from "../components/HomeSections"; // Placeholders
 
 const HomeScreen = () => {
-  // const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); // Hook for navigation
   const [personalizedContent, setPersonalizedContent] = useState({
     dailyMixes: [],
     recentlyPlayed: [],
@@ -52,13 +51,13 @@ const HomeScreen = () => {
   }, []);
 
   const handleSearchFocus = () => {
-    // navigate('/search'); // Navigate to search page
-    console.log("Navigate to search"); // Placeholder action
+    navigate("/search"); // Navigate to search page
+    // console.log("Navigate to search"); // Placeholder action removed
   };
 
   const handleItemPress = (type, id) => {
-    // navigate(`/${type}/${id}`);
-    console.log(`Navigate to ${type} with id ${id}`); // Placeholder action
+    navigate(`/${type.toLowerCase()}/${id}`); // Use navigate, ensure type is lowercase for path consistency
+    // console.log(`Navigate to ${type} with id ${id}`); // Placeholder action removed
   };
 
   const handleTrackPress = (item) => {
@@ -138,11 +137,11 @@ const HomeScreen = () => {
         <MiniPlayer
           track={currentTrack}
           isPlaying={isPlaying}
-          onPress={() => console.log("Navigate to Player")} // Placeholder action
+          onPress={() => navigate("/player")} // Navigate to a player route (assuming '/player' exists or will be added)
         />
       )}
-      <BottomTabBar currentTab="Home" /* navigation={navigate} */ />{" "}
-      {/* Pass navigate or handle navigation internally */}
+      <BottomTabBar />{" "}
+      {/* Remove props, BottomTabBar now handles its state/navigation */}
     </div>
   );
 };
